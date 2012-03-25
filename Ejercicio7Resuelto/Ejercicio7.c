@@ -1,0 +1,162 @@
+/*
+ * Ejercicio7.c
+ *
+ *  Created on: Mar 25, 2012
+ *      Author: seba
+ */
+
+#include "Ejercicio7.h"
+#include <math.h> //Solucion al Error 12
+int main(void)
+{
+	char* st="Cadena";
+	char* st2=st;
+		ModificarCadena(&st);
+		if(strcmp(st,st2) !=0)
+			printf("Logre cambiar la cadena! \n");
+		else
+			printf("No logre cambiar la cadena! \n");
+	Error1();
+	Error2();
+	Error3();
+	Error4();
+	Error6();
+	printf("Pareciera que esta todo bien!!\n");
+}
+void Error1()
+{
+	printf("Error 1 \n");
+	int i;
+	char cadena[10];
+	char cadena2[10];
+	//for( i=1;i<=10;i++)  Error n°1
+	for(i=0;i<10;i++)
+	{
+		switch(i)
+		{
+		/*
+		 * Error n°2
+
+			case 1:
+				cadena[i]='A';
+			case 2:
+				cadena[i]='B';
+			case 3:
+				cadena[i]='C';
+			case 4:
+			 Error n° 3
+				cadena[i]="D";
+			default:
+				cadena[i]="-";
+		 */
+
+			case 1:
+				cadena[i]='A';
+				break;
+			case 2:
+				cadena[i]='B';
+				break;
+			case 3:
+				cadena[i]='C';
+				break;
+			case 4:
+				cadena[i]='D';
+				break;
+			default:
+				cadena[i]='-';
+		}
+	}
+	//cadena[9]='a'; //Error 4 y 5
+	//printf("cadena 1: %s",cadena); // Error 4
+	//if(strcmp(cadena2,cadena))//Error 5
+	cadena[9]='\0';
+	printf("cadena 1: %s",cadena);
+	if(strcmp(cadena2,cadena)==0)
+		printf("Genere 2 cadenas iguales!\n");
+
+
+}
+
+void Error2()
+{
+	char* cadena1="El Zumba";
+	char* cadena2="El Zumba";
+
+	/*if(cadena1==cadena2) //Error 6
+		printf("Son iguales! :)\n");*/
+	if(strcmp(cadena1,cadena2)==0)
+		printf("Son iguales! :)\n");
+
+	/*char * st;
+	strcpy(st, "abc"); //Error 7*/
+	char * st=malloc(strlen("abc")+1);
+	strcpy(st, "abc");
+
+	//char* cadena3=malloc(strlen(cadena1)); //Error 8
+	char* cadena3=malloc(strlen(cadena1)+1);
+	strcpy(cadena3,cadena1);
+	strcpy(cadena2,cadena3);
+	if(strcmp(cadena2,cadena3)==0 )
+	printf("Genere 2 cadenas iguales!\n");
+}
+
+void Error3()
+{
+	int x;
+	char * st = malloc(31);
+/*
+	scanf("Inserte un numero %d\n", x); //Error 10
+	scanf("Inserte una cadena %30s\n", &st); //Error 11
+	*/
+	scanf("Inserte un numero %d\n", &x);
+	scanf("Inserte una cadena %30s\n", st);
+/*
+	char* st2=st;
+	ModificarCadena(st); //Error 9
+	if(strcmp(st,st2) !=0)
+		printf("Logre cambiar la cadena! \n");
+	else
+		printf("No logre cambiar la cadena! \n");
+	*/
+	char* st2=st;
+		ModificarCadena(&st);
+		if(strcmp(st,st2) !=0)
+			printf("Logre cambiar la cadena! \n");
+		else
+			printf("No logre cambiar la cadena! \n");
+
+}
+
+
+void ModificarCadena(char** st)
+{
+	*st="Nueva Cadena";
+}
+
+void Error4()
+{
+	double raiz=sqrt(2); //Error 12
+	if(raiz >1 )
+		printf("Yuppiiie estoy para aprobar AM2!!\n");
+		Error5(&raiz); //Error 13
+		//if(raiz = 2)//Error 14
+		if(raiz == 2)//Error 14
+			printf("Yuppiiie estoy para aprobar SO!!\n");
+	/*else //Error 15
+		printf("La raiz de 2 no me dio mal me dio menor o igual a 1!!!");*/
+		else
+			printf("La raiz de 2 no me dio mal me dio menor a 1!!!");
+}
+
+void Error5(double* raiz)
+{
+	*raiz=pow(*raiz,2); //Error 13
+}
+
+void Error6()
+{
+	int x = 5;
+	//while( x > 0 ); //Error 15
+	while( x > 0 )
+		x--;
+}
