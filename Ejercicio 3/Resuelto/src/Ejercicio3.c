@@ -5,7 +5,7 @@
  *      Author: sebastian
  */
 
-#include "Ejercicio3Resuelto.h"
+#include "Ejercicio3.h"
 
 t_hamburguesa hamburgesa;
 sem_t semPanInferior;
@@ -17,6 +17,7 @@ sem_t semLechuga;
 sem_t semTomate;
 sem_t semPanSuperior;
 sem_t semEntrega;
+
 int main (void)
 {
 	pthread_t h1,h2,h3,h4,h5,h6,h7,h8;
