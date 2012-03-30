@@ -5,8 +5,8 @@
  *      Author: sebastian
  */
 
-#ifndef EJERCICIO4RESUELTO_H_
-#define EJERCICIO4RESUELTO_H_
+#ifndef EJERCICIO4_H_
+#define EJERCICIO4_H_
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -16,41 +16,37 @@
 #include <unistd.h>
 #include <memory.h>
 #include "Collections/queue.h"
-typedef struct
-{
+
+typedef struct {
 	char* informacionCodificada;
 	int longitudInformacionCodificada;
-}__attribute__((packed)) t_mision;
+} __attribute__((packed)) t_mision;
 
 
-typedef struct
-{
+typedef struct {
 	char* apodo;
 	int edad;
 	bool daVueltas;
-}__attribute__((packed)) t_mascota;
+} __attribute__((packed)) t_mascota;
 
-typedef struct
-{
+typedef struct {
 	char nombre[25];
 	int edad;
-}__attribute__((packed))  t_Villano;
+} __attribute__((packed))  t_Villano;
 
 
-typedef struct
-{
+typedef struct {
 	char* nombre;
 	int edad;
 	t_list* listaDeVillanos;
 	t_mascota* mascota;
 	t_mision* mision;
-}__attribute__((packed)) t_Spock;
+} __attribute__((packed)) t_Spock;
 
-typedef struct
-{
+typedef struct {
 	char* data;
 	int length;
-}__attribute__((packed)) t_stream;
+} __attribute__((packed)) t_stream;
 
 void ChequearVillanos(void* villano);
 
@@ -75,4 +71,5 @@ void* t_Villano_deserialize(t_stream* stream);
 void t_Spock_Destruir(t_Spock* spock);
 
 void t_Villano_Destroyer(void* villano);
-#endif /* EJERCICIO4RESUELTO_H_ */
+
+#endif /* EJERCICIO4_H_ */

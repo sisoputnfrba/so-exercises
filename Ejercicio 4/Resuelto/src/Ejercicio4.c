@@ -7,7 +7,7 @@
 
 
 
-#include "Ejercicio4Resuelto.h"
+#include "Ejercicio4.h"
 
 /*
  * Por una cuestion de simplicidad del ejercicio

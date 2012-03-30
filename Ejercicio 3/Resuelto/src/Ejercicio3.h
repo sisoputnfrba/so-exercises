@@ -1,12 +1,12 @@
 /*
- * Ejercicio3Resuelto.h
+ * Ejercicio3.h
  *
  *  Created on: 10/03/2012
  *      Author: sebastian
  */
 
-#ifndef EJERCICIO3RESUELTO_H_
-#define EJERCICIO3RESUELTO_H_
+#ifndef EJERCICIO3_H_
+#define EJERCICIO3_H_
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
@@ -15,13 +15,12 @@
 #include <semaphore.h>
 #include "Collections/queue.h"
 
-typedef struct
-{
+typedef struct {
 	bool embalada;
 	t_queue* ingredientes;
 }t_hamburguesa;
-typedef enum
-{
+
+typedef enum {
 	PANINFERIOR=0,
 	CONDIMENTOS=1,
 	CARNE=2,
@@ -31,8 +30,7 @@ typedef enum
 	TOMATE=6,
 	PANSUPERIOR=7,
 	FIN=8
-
-}t_Ingredientes;
+} t_Ingredientes;
 
 void*  Agregar_Pan_Inferior (void * args);
 void*  Agregar_Condimento (void * args);
@@ -46,4 +44,5 @@ void*  Entregar (void * args);
 void Agregar(t_Ingredientes ingrediente);
 char* Ingrediente_ToString(t_Ingredientes ingrediente);
 int EstaBienArmada();
-#endif /* EJERCICIO3RESUELTO_H_ */
+
+#endif /* EJERCICIO3_H_ */
