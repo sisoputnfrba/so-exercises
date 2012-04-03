@@ -15,30 +15,25 @@
 #include <unistd.h>
 #include <memory.h>
 #include "Collections/queue.h"
-typedef struct
-{
+
+typedef struct {
 	char* informacionCodificada;
 	int longitudInformacionCodificada;
 }__attribute__((packed)) t_mision;
 
-
-typedef struct
-{
+typedef struct {
 	char* apodo;
 	int edad;
 	bool daVueltas;
-}__attribute__((packed)) t_mascota ;
+}__attribute__((packed)) t_mascota;
 
-typedef struct
-{
+typedef struct {
 	char nombre[25];
 	int edad;
 
-}__attribute__((packed))  t_Villano;
+}__attribute__((packed)) t_Villano;
 
-
-typedef struct
-{
+typedef struct {
 	char* nombre;
 	int edad;
 	t_list* listaDeVillanos;
@@ -49,11 +44,17 @@ typedef struct
 void ChequearVillanos(void* villano);
 
 t_Spock* t_Spock_CrearSpock();
-
 void t_Spock_EnviarAMision(t_Spock* spock);
-
-void t_Spock_CompararSpocks(t_Spock* spockEnviado,t_Spock* spockRecibido);
-
+void t_Spock_CompararSpocks(t_Spock* spockEnviado, t_Spock* spockRecibido);
 void t_Villano_Destroyer(void* villano);
+
+t_mascota* t_mascota_crear(char* apodo, bool daVueltas, int edad);
+void t_mascota_destroy(t_mascota* mascota);
+
+t_Villano* t_villano_crear(char* nombre, int edad);
+void t_villano_destroy(t_Villano* villano);
+
+t_mision* t_mision_crear(char* mensaje);
+void t_mision_destroy(t_mision* mision);
 
 #endif /* EJERCICIO4_H_ */
