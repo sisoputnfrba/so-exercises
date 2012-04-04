@@ -7,12 +7,7 @@
 
 #include "Ejercicio4.h"
 
-#include <stdio.h>
 #include <stdlib.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <unistd.h>
-#include <memory.h>
 
 /*
  * Por una cuestion de simplicidad del ejercicio
