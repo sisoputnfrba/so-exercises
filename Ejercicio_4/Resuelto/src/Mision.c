@@ -8,6 +8,9 @@
 
 #include "Mision.h"
 
+#include <stdlib.h>
+#include <string.h>
+
 t_mision* t_mision_crear(char* mensaje) {
 	t_mision* mision = malloc(sizeof(t_mision));
 	mision->informacionCodificada = strdup(mensaje);

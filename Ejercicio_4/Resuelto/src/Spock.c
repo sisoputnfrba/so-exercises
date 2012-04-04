@@ -79,6 +79,7 @@ t_stream* t_Spock_Serialize(t_Spock* spock) {
 	}
 
 	int count_villanos = list_size(spock->listaDeVillanos);
+	stream_spock->data = realloc(stream_spock->data, stream_spock->size + sizeof(count_villanos));
 	memcpy(stream_spock->data + offset, &count_villanos, sizeof(count_villanos));
 	stream_spock->size += sizeof(count_villanos);
 	offset += sizeof(count_villanos);
@@ -140,8 +141,10 @@ t_Spock* t_Spock_VolverDeMision() {
 	t_stream* stream_spock_read = t_stream_create(statSpock.st_size);
 	fread(stream_spock_read->data, statSpock.st_size, 1, file);
 	fclose(file);
+    t_Spock *spock = t_Spock_deserialize(stream_spock_read->data, &stream_spock_read->size);
+    t_stream_destroy(stream_spock_read);
 
-	return t_Spock_deserialize(stream_spock_read->data, &stream_spock_read->size);
+    return spock;
 }
 
 void t_Spock_son_iguales(t_Spock* spock, t_Spock* otro_spock) {
