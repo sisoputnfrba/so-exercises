@@ -14,8 +14,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef EJERCICIO1_H_
-#define EJERCICIO1_H_
+#ifndef SOLUCION_LEO_H_
+#define SOLUCION_LEO_H_
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -23,10 +23,11 @@
 
 #include <sys/types.h>
 #include <unistd.h>
+ 
 void* ComprasMensuales(void * args);
 int ConsultaSaldo();
 void HacerCompras(int monto,const char* nombre);
 void Comprar(int monto);
 
 
-#endif /* EJERCICIO1_H_ */
+#endif /* SOLUCION_LEO_H_ */

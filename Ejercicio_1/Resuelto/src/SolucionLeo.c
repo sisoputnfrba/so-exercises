@@ -14,7 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "Ejercicio1.h"
+#include "SolucionLeo.h"
 
 #define SALDO 100
 int saldoInicial;
