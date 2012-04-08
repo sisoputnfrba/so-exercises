@@ -14,31 +14,44 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef EJERCICIO2_H_
-#define EJERCICIO2_H_
-
-#define _XOPEN_SOURCE 500
+#ifndef WENDYS_H_
+#define WENDYS_H_
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
-#include <stdint.h>
-#include <sys/types.h>
 #include <unistd.h>
-#include <semaphore.h>
+#include <stdbool.h>
 #include "Collections/queue.h"
 
 typedef struct {
-	const char* pc; //PC que hizo el pedido de impresion
-	char* data;
-} t_print_job;
+	bool embalada;
+	t_queue* ingredientes;
+} t_hamburguesa;
 
-void trabajar(void * args);
-void procesar_cola_impresion(void * args);
-void mandar_a_imprimir(t_queue* jobQueue, const char* nombre);
-char* crear_data();
+typedef enum {
+	PANINFERIOR = 0,
+	CONDIMENTOS = 1,
+	CARNE = 2,
+	QUESO = 3,
+	PANCETA = 4,
+	LECHUGA = 5,
+	TOMATE = 6,
+	PANSUPERIOR = 7,
+	FIN = 8
+} t_Ingredientes;
 
-void* queue_sync_pop(t_queue* self);
-void queue_sync_push(t_queue* self, void* element);
+void  agregar_pan_inferior();
+void  agregar_condimento();
+void  agregar_carne();
+void  agregar_queso();
+void  agregar_panceta();
+void  agregar_lechuga();
+void  agregar_tomate();
+void  agregar_pan_superior();
+void  entregar();
+void  agregar(t_Ingredientes ingrediente);
+char* ingrediente_to_string(t_Ingredientes ingrediente);
+bool  esta_bien_armada();
 
-#endif /* EJERCICIO2_H_ */
+#endif /* WENDYS_H_ */

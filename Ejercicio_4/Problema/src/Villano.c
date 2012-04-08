@@ -19,13 +19,13 @@
 #include <stdlib.h>
 #include <string.h>
 
-t_Villano* t_villano_crear(char* nombre, int edad) {
-	t_Villano* villano = malloc(sizeof(t_Villano));
+t_villano* villano_create(char* nombre, int edad) {
+	t_villano* villano = malloc(sizeof(t_villano));
 	strncpy(villano->nombre, nombre, 24);
 	villano->edad = edad;
 	return villano;
 }
 
-void t_villano_destroy(t_Villano* villano) {
+void villano_destroy(t_villano* villano) {
 	free(villano);
 }

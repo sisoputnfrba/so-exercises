@@ -17,12 +17,14 @@
 #ifndef VILLANO_H_
 #define VILLANO_H_
 
+#include <stdint.h>
+
 typedef struct {
 	char nombre[25];
-	int edad;
-}__attribute__((packed)) t_Villano;
+	uint16_t edad;
+}__attribute__((packed)) t_villano;
 
-t_Villano* t_villano_crear(char* nombre, int edad);
-void t_villano_destroy(t_Villano* villano);
+t_villano* villano_create(char* nombre, int edad);
+void villano_destroy(t_villano* villano);
 
 #endif /* VILLANO_H_ */

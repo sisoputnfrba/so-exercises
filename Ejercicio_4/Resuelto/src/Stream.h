@@ -22,8 +22,8 @@ typedef struct {
 	int size;
 } t_stream;
 
-t_stream* t_stream_create(int size);
-void t_stream_destroy(t_stream* stream);
+t_stream* stream_create(int size);
+void stream_destroy(t_stream* stream);
 
 
 #endif /* STREAM_H_ */

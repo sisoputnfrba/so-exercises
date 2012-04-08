@@ -17,17 +17,9 @@
 #ifndef SOLUCION_LEO_H_
 #define SOLUCION_LEO_H_
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <pthread.h>
-
-#include <sys/types.h>
-#include <unistd.h>
- 
-void* ComprasMensuales(void * args);
-int ConsultaSaldo();
-void HacerCompras(int monto,const char* nombre);
-void Comprar(int monto);
-
+void compras_mensuales(void* args);
+int consulta_saldo();
+void hacer_compras(int monto, const char* nombre);
+void comprar(int monto);
 
 #endif /* SOLUCION_LEO_H_ */

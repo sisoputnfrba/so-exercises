@@ -23,10 +23,9 @@
 #include <unistd.h>
 #include <sys/types.h>
 
-void* ComprasMensuales(void * args);
-int ConsultaSaldo();
-void HacerCompras(int monto,const char* nombre);
-void Comprar(int monto);
-
+void compras_mensuales(void* args);
+int consulta_saldo();
+void hacer_compras(int monto, const char* nombre);
+void comprar(int monto);
 
 #endif /* SOLUCIONLEO_H_ */

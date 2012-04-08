@@ -19,14 +19,14 @@
 #include <stdlib.h>
 #include <string.h>
 
-t_mision* t_mision_crear(char* mensaje) {
+t_mision* mision_crear(char* mensaje) {
 	t_mision* mision = malloc(sizeof(t_mision));
-	mision->informacionCodificada = strdup(mensaje);
-	mision->longitudInformacionCodificada = strlen(mision->informacionCodificada);
+	mision->info_codificada = strdup(mensaje);
+	mision->longitud_info = strlen(mision->info_codificada);
 	return mision;
 }
 
-void t_mision_destroy(t_mision* mision) {
-	free(mision->informacionCodificada);
+void mision_destroy(t_mision* mision) {
+	free(mision->info_codificada);
 	free(mision);
 }

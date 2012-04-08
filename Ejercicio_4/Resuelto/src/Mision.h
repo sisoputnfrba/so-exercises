@@ -20,15 +20,17 @@
 #include "Mision.h"
 #include "Stream.h"
 
+#include "stdint.h"
+
 typedef struct {
 	char* informacionCodificada;
-	int longitudInformacionCodificada;
+	uint32_t longitudInformacionCodificada;
 }__attribute__((packed)) t_mision;
 
-t_mision* t_mision_crear(char* mensaje);
-void t_mision_destroy(t_mision* mision);
+t_mision* mision_crear(char* mensaje);
+void mision_destroy(t_mision* mision);
 
-t_stream* t_mision_serialize(t_mision* mision);
-t_mision* t_mision_deserialize(char* stream, int* size);
+t_stream* mision_serialize(t_mision* mision);
+t_mision* mision_deserialize(char* stream, int* size);
 
 #endif /* MISION_H_ */

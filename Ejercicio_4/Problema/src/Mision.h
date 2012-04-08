@@ -18,11 +18,11 @@
 #define MISION_H_
 
 typedef struct {
-	char* informacionCodificada;
-	int longitudInformacionCodificada;
+	char* info_codificada;
+	int longitud_info;
 }__attribute__((packed)) t_mision;
 
-t_mision* t_mision_crear(char* mensaje);
-void t_mision_destroy(t_mision* mision);
+t_mision* mision_crear(char* mensaje);
+void mision_destroy(t_mision* mision);
 
 #endif /* MISION_H_ */
