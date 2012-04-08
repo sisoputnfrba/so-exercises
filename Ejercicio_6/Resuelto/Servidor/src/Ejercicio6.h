@@ -19,9 +19,10 @@
 #include <sys/select.h>
 #include "Collections/queue.h"
 #include <string.h>
-void IniciarConexion();
 
-void queue__sync_push(t_queue *, void *element);
+void iniciar_conexion();
+
+void queue_sync_push(t_queue *, void *element);
 void *queue_sync_pop(t_queue *);
 
 #endif /* EJERCICIO5_H_ */

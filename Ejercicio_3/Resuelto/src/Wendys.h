@@ -14,15 +14,16 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef EJERCICIO3_H_
-#define EJERCICIO3_H_
+#ifndef WENDYS_H_
+#define WENDYS_H_
 
+#include <stdbool.h>
 #include "Collections/queue.h"
 
 typedef struct {
 	bool embalada;
 	t_queue* ingredientes;
-} t_hamburguesa;
+}t_hamburguesa;
 
 typedef enum {
 	PANINFERIOR,
@@ -35,4 +36,18 @@ typedef enum {
 	PANSUPERIOR,
 } t_Ingredientes;
 
-#endif /* EJERCICIO3_H_ */
+void llegada_nuevo_cliente();
+void  agregar_pan_inferior();
+void  agregar_condimento();
+void  agregar_carne();
+void  agregar_queso();
+void  agregar_panceta();
+void  agregar_lechuga();
+void  agregar_tomate();
+void  agregar_pan_superior();
+void  entregar();
+void  agregar(t_Ingredientes ingrediente);
+char* ingrediente_to_string(t_Ingredientes ingrediente);
+bool  esta_bien_armada();
+
+#endif /* WENDYS_H_ */

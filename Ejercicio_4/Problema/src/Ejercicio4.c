@@ -17,6 +17,7 @@
 #include "Ejercicio4.h"
 
 #include <stdlib.h>
+#include <stdio.h>
 
 /*
  * Por una cuestion de simplicidad del ejercicio
@@ -28,13 +29,13 @@
 
 
 int main(void) {
-	t_Spock* spock_enviado = t_Spock_CrearSpock();
-	t_Spock_EnviarAMision(spock_enviado);
+	t_spock* spock_enviado = spock_create();
+	spock_enviar_a_mision(spock_enviado);
 
-	t_Spock* spock_recibido = t_Spock_VolverDeMision();
+	t_spock* spock_recibido = spock_volver_de_mision();
 
-	t_Spock_Destruir(spock_enviado);
-	t_Spock_Destruir(spock_recibido);
+	spock_destroy(spock_enviado);
+	spock_destroy(spock_recibido);
 
 	return EXIT_SUCCESS;
 }

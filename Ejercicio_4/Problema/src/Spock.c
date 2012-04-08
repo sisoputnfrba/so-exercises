@@ -23,64 +23,61 @@
 
 static char* mensajeRandom();
 
-t_Spock* t_Spock_CrearSpock() {
-	t_Spock* spock = malloc(sizeof(t_Spock));
+t_spock* spock_create() {
+	t_spock* spock = malloc(sizeof(t_spock));
 	spock->edad = 40;
 	spock->nombre = strdup("Roberto Spock");
 
-	spock->mascota = t_mascota_crear("Babu", true, 5);
-	spock->listaDeVillanos = list_create();
+	spock->mascota = mascota_crear("Babu", true, 5);
+	spock->villanos = list_create();
 
-	list_add(spock->listaDeVillanos, t_villano_crear("Borg Queen", 34));
-	list_add(spock->listaDeVillanos, t_villano_crear("Locotus", 20));
-	list_add(spock->listaDeVillanos, t_villano_crear("Dukat", 67));
+	list_add(spock->villanos, villano_create("Borg Queen", 34));
+	list_add(spock->villanos, villano_create("Locotus", 20));
+	list_add(spock->villanos, villano_create("Dukat", 67));
 
 	char* mensaje = mensajeRandom();
-	spock->mision = t_mision_crear(mensaje);
+	spock->mision = mision_crear(mensaje);
 
 	return spock;
 }
 
-void t_Spock_Destruir(t_Spock* spock) {
+void spock_destroy(t_spock* spock) {
 	if (spock != NULL) {
 		free(spock->nombre);
-		t_mascota_destroy(spock->mascota);
-		t_mision_destroy(spock->mision);
-		list_destroy_and_destroy_elements(spock->listaDeVillanos, (void*) t_villano_destroy);
+		mascota_destroy(spock->mascota);
+		mision_destroy(spock->mision);
+		list_destroy_and_destroy_elements(spock->villanos, (void*) villano_destroy);
 		free(spock);
 	}
 }
 
-void t_Spock_EnviarAMision(t_Spock* spock) {
+void spock_enviar_a_mision(t_spock* spock) {
 	FILE* file = fopen("./spock.bin", "w");
-	fwrite(spock, sizeof(t_Spock), 1, file);
+	fwrite(spock, sizeof(t_spock), 1, file);
 	fflush(file);
 	fclose(file);
 }
 
-t_Spock* t_Spock_VolverDeMision() {
+t_spock* spock_volver_de_mision() {
 	printf("ahhhhhhh!! no podemos recuperar a Spock\n");
 	return NULL;
 }
 
-void t_Spock_son_iguales(t_Spock* spock, t_Spock* otro_spock) {
+void spock_es_igual(t_spock* spock, t_spock* otro_spock) {
 	assert(strcmp(spock->nombre, otro_spock->nombre) == 0);
 	assert(spock->edad == otro_spock->edad);
 
 	assert(strcmp(spock->mascota->apodo, otro_spock->mascota->apodo) == 0);
-
-	assert(spock->mascota->daVueltas == otro_spock->mascota->daVueltas);
-
+	assert(spock->mascota->da_vueltas == otro_spock->mascota->da_vueltas);
 	assert(spock->mascota->edad == otro_spock->mascota->edad);
 
-	assert(strcmp(spock->mision->informacionCodificada, otro_spock->mision->informacionCodificada) == 0);
-
-	assert(spock->mision->longitudInformacionCodificada == otro_spock->mision->longitudInformacionCodificada);
+	assert(strcmp(spock->mision->info_codificada, otro_spock->mision->info_codificada) == 0);
+	assert(spock->mision->longitud_info == otro_spock->mision->longitud_info);
 
 	int i;
-	for (i = 0; i < list_size(spock->listaDeVillanos); ++i) {
-		t_Villano* villano_enviado = list_get(spock->listaDeVillanos, i);
-		t_Villano* villano_recibido = list_get(spock->listaDeVillanos, i);
+	for (i = 0; i < list_size(spock->villanos); ++i) {
+		t_villano* villano_enviado = list_get(spock->villanos, i);
+		t_villano* villano_recibido = list_get(spock->villanos, i);
 
 		assert(strcmp(villano_enviado->nombre, villano_recibido->nombre) == 0);
 		assert(villano_enviado->edad == villano_recibido->edad);

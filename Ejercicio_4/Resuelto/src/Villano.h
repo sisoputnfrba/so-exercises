@@ -18,16 +18,17 @@
 #define VILLANO_H_
 
 #include "Stream.h"
+#include <stdint.h>
 
 typedef struct {
 	char nombre[25];
-	int edad;
-}__attribute__((packed)) t_Villano;
+	uint16_t edad;
+}__attribute__((packed)) t_villano;
 
-t_Villano* t_villano_crear(char* nombre, int edad);
-void t_villano_destroy(t_Villano* villano);
+t_villano* villano_crear(char* nombre, int edad);
+void villano_destroy(t_villano* villano);
 
-t_stream* t_villano_serialize(t_Villano* villano);
-t_Villano* t_villano_deserialize(char* stream, int* size);
+t_stream* villano_serialize(t_villano* villano);
+t_villano* villano_deserialize(char* stream, int* size);
 
 #endif /* VILLANO_H_ */

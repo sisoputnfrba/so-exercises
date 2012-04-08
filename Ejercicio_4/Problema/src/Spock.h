@@ -24,18 +24,19 @@
 
 typedef struct {
 	char* nombre;
-	int edad;
-	t_list* listaDeVillanos;
+	char edad;
+	t_list* villanos;
 	t_mascota* mascota;
 	t_mision* mision;
-}__attribute__((packed)) t_Spock;
+}__attribute__((packed)) t_spock;
 
-t_Spock* t_Spock_CrearSpock();
-void t_Spock_Destruir(t_Spock* spock);
+t_spock* spock_create();
+void spock_destroy(t_spock* spock);
 
-void t_Spock_EnviarAMision(t_Spock* spock);
-t_Spock* t_Spock_VolverDeMision();
+void spock_enviar_a_mision(t_spock* spock);
+t_spock* spock_volver_de_mision();
 
-void t_Spock_son_iguales(t_Spock* spock, t_Spock* otro_spock);
+void spock_es_igual(t_spock* spock, t_spock* otro_spock);
+void spock_print(t_spock* spock);
 
 #endif /* SPOCK_H_ */

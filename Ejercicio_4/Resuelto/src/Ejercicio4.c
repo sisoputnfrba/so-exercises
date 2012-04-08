@@ -17,6 +17,7 @@
 #include "Ejercicio4.h"
 
 #include <stdlib.h>
+#include <stdio.h>
 
 /*
  * Por una cuestion de simplicidad del ejercicio
@@ -26,12 +27,17 @@
  * en el que podemos enviar estructuras complejas.
  */
 int main(void) {
-	t_Spock* spock_a_enviar = t_Spock_CrearSpock();
-	t_Spock_EnviarAMision(spock_a_enviar);
+	t_spock* spock_a_enviar = spock_crear();
+	spock_enviar_a_mision(spock_a_enviar);
 
-	t_Spock* spock_recibido = t_Spock_VolverDeMision();
+	t_spock* spock_recibido = spock_volver_de_mision();
+	spock_es_igual(spock_a_enviar, spock_recibido);
 
-	t_Spock_Destruir(spock_a_enviar);
-	t_Spock_Destruir(spock_recibido);
+	spock_print(spock_a_enviar);
+	printf("---------------------------------\n");
+	spock_print(spock_recibido);
+
+	spock_destroy(spock_a_enviar);
+	spock_destroy(spock_recibido);
 	return EXIT_SUCCESS;
 }
