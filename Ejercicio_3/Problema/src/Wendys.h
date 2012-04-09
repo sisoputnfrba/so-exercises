@@ -17,10 +17,6 @@
 #ifndef WENDYS_H_
 #define WENDYS_H_
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <pthread.h>
-#include <unistd.h>
 #include <stdbool.h>
 #include "Collections/queue.h"
 
@@ -41,6 +37,7 @@ typedef enum {
 	FIN = 8
 } t_Ingredientes;
 
+void llegada_nuevo_cliente();
 void  agregar_pan_inferior();
 void  agregar_condimento();
 void  agregar_carne();

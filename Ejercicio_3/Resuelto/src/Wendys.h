@@ -17,12 +17,7 @@
 #ifndef WENDYS_H_
 #define WENDYS_H_
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <pthread.h>
-#include <unistd.h>
 #include <stdbool.h>
-#include <semaphore.h>
 #include "Collections/queue.h"
 
 typedef struct {
@@ -31,17 +26,17 @@ typedef struct {
 }t_hamburguesa;
 
 typedef enum {
-	PANINFERIOR=0,
-	CONDIMENTOS=1,
-	CARNE=2,
-	QUESO=3,
-	PANCETA=4,
-	LECHUGA=5,
-	TOMATE=6,
-	PANSUPERIOR=7,
-	FIN=8
+	PANINFERIOR,
+	CONDIMENTOS,
+	CARNE,
+	QUESO,
+	PANCETA,
+	LECHUGA,
+	TOMATE,
+	PANSUPERIOR,
 } t_Ingredientes;
 
+void llegada_nuevo_cliente();
 void  agregar_pan_inferior();
 void  agregar_condimento();
 void  agregar_carne();

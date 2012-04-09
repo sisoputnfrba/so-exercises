@@ -16,7 +16,17 @@
 
 #include "Wendys.h"
 
+#include <semaphore.h>
+#include <pthread.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <unistd.h>
+
+#define CANT_HAMBURGUESAS 10
+
 t_hamburguesa hamburguesa;
+pthread_mutex_t mutex;
+sem_t sem_llegada_nuevo_cliente;
 sem_t sem_pan_inferior;
 sem_t sem_condimento;
 sem_t sem_carne;
@@ -28,9 +38,10 @@ sem_t sem_pan_superior;
 sem_t sem_entrega;
 
 int main(void) {
-	pthread_t h1, h2, h3, h4, h5, h6, h7, h8;
+	pthread_t h0, h1, h2, h3, h4, h5, h6, h7, h8;
 
-	sem_init(&sem_pan_inferior, 0, 1);
+	sem_init(&sem_llegada_nuevo_cliente, 0, 1);
+	sem_init(&sem_pan_inferior, 0, 0);
 	sem_init(&sem_condimento, 0, 0);
 	sem_init(&sem_carne, 0, 0);
 	sem_init(&sem_queso, 0, 0);
@@ -43,6 +54,7 @@ int main(void) {
 	hamburguesa.embalada = false;
 	hamburguesa.ingredientes = queue_create();
 
+	pthread_create(&h0, NULL, (void*) llegada_nuevo_cliente, NULL);
 	pthread_create(&h1, NULL, (void*) agregar_pan_inferior, NULL);
 	pthread_create(&h2, NULL, (void*) agregar_condimento, NULL);
 	pthread_create(&h3, NULL, (void*) agregar_carne, NULL);
@@ -65,70 +77,101 @@ int main(void) {
 	return EXIT_SUCCESS;
 }
 
+void llegada_nuevo_cliente() {
+	for (int i = 0; i < CANT_HAMBURGUESAS; ++i) {
+		sem_wait(&sem_llegada_nuevo_cliente);
+		printf("Esperando nuevo cliente...\n");
+		sleep(3);
+		printf("Llego un nuevo cliente...\n");
+		sem_post(&sem_pan_inferior);
+	}
+}
+
 void agregar_pan_inferior() {
-	sem_wait(&sem_pan_inferior);
-	agregar(PANINFERIOR);
-	sem_post(&sem_condimento);
+	for (int i = 0; i < CANT_HAMBURGUESAS; ++i) {
+		sem_wait(&sem_pan_inferior);
+		agregar(PANINFERIOR);
+		sem_post(&sem_condimento);
+	}
 }
 
 void agregar_condimento() {
-	sem_wait(&sem_condimento);
-	agregar(CONDIMENTOS);
-	sem_post(&sem_carne);
+	for (int i = 0; i < CANT_HAMBURGUESAS; ++i) {
+		sem_wait(&sem_condimento);
+		agregar(CONDIMENTOS);
+		sem_post(&sem_carne);
+	}
 }
 
 void agregar_carne() {
-	sem_wait(&sem_carne);
-	agregar(CARNE);
-	sem_post(&sem_queso);
+	for (int i = 0; i < CANT_HAMBURGUESAS; ++i) {
+		sem_wait(&sem_carne);
+		agregar(CARNE);
+		sem_post(&sem_queso);
+	}
 }
 
 void agregar_queso() {
-	sem_wait(&sem_queso);
-	agregar(QUESO);
-	sem_post(&sem_panceta);
+	for (int i = 0; i < CANT_HAMBURGUESAS; ++i) {
+		sem_wait(&sem_queso);
+		agregar(QUESO);
+		sem_post(&sem_panceta);
+	}
 }
 
 void agregar_panceta() {
-	sem_wait(&sem_panceta);
-	agregar(PANCETA);
-	sem_post(&sem_lechuga);
+	for (int i = 0; i < CANT_HAMBURGUESAS; ++i) {
+		sem_wait(&sem_panceta);
+		agregar(PANCETA);
+		sem_post(&sem_lechuga);
+	}
 }
 
 void agregar_lechuga() {
-	sem_wait(&sem_lechuga);
-	agregar(LECHUGA);
-	sem_post(&sem_tomate);
+	for (int i = 0; i < CANT_HAMBURGUESAS; ++i) {
+		sem_wait(&sem_lechuga);
+		agregar(LECHUGA);
+		sem_post(&sem_tomate);
+	}
 }
 
 void agregar_tomate() {
-	sem_wait(&sem_tomate);
-	agregar(TOMATE);
-	sem_post(&sem_pan_superior);
+	for (int i = 0; i < CANT_HAMBURGUESAS; ++i) {
+		sem_wait(&sem_tomate);
+		agregar(TOMATE);
+		sem_post(&sem_pan_superior);
+	}
 }
 
 void agregar_pan_superior() {
-	sem_wait(&sem_pan_superior);
-	agregar(PANSUPERIOR);
-	sem_post(&sem_entrega);
-	sem_post(&sem_pan_inferior);
+	for (int i = 0; i < CANT_HAMBURGUESAS; ++i) {
+		sem_wait(&sem_pan_superior);
+		agregar(PANSUPERIOR);
+		sem_post(&sem_entrega);
+		sem_post(&sem_llegada_nuevo_cliente);
+	}
 }
 
 void entregar() {
-
-	sem_wait(&sem_entrega);
-	if (!esta_bien_armada()) {
-		printf("Error en el armado de la hamburguesa!! El cliente se fue a comerse un triple bacon a mc :( \n");
-	} else {
-		printf("Hamburguesa armada perfectamente!! Le hemos tapado 5 arterias al cliente!! :)\n");
+	for (int i = 0; i < CANT_HAMBURGUESAS; ++i) {
+		sem_wait(&sem_entrega);
+		if (!esta_bien_armada()){
+			printf("Error en el armado de la hamburguesa!!\n"
+					"El cliente se fue a comerse un triple bacon a mc :( \n");
+		} else {
+			printf("Hamburguesa armada perfectamente!!\n"
+					"Le hemos tapado 5 arterias al cliente!! :)\n");
+		}
 	}
 }
 
 void agregar(t_Ingredientes ingrediente) {
 	printf("Agregando ingrediente %s\n", ingrediente_to_string(ingrediente));
+	pthread_mutex_lock(&mutex);
 	int * i = malloc(sizeof(int));
 	*i = ingrediente;
 	queue_push(hamburguesa.ingredientes, i);
+	pthread_mutex_unlock(&mutex);
 }
 
 bool esta_bien_armada() {
@@ -139,7 +182,9 @@ bool esta_bien_armada() {
 		t_Ingredientes ingrediente_correcto = (t_Ingredientes) i;
 		t_Ingredientes ingrediente_hamburguesa;
 
+		pthread_mutex_lock(&mutex);
 		int* ingrediente = queue_pop(hamburguesa.ingredientes);
+		pthread_mutex_unlock(&mutex);
 
 		if (ingrediente == NULL) {
 			printf("Faltaron ingredientes!\n");
