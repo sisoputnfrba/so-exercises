@@ -14,34 +14,31 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef SPOCK_H_
-#define SPOCK_H_
+#include "spock/Spock.h"
 
-#include "Mision.h"
-#include "Villano.h"
-#include "Stream.h"
-#include "Mascota.h"
-#include "Collections/list.h"
+#include <stdlib.h>
+#include <stdio.h>
 
-typedef struct {
-	char* nombre;
-	char edad;
-	t_list* villanos;
-	t_mascota* mascota;
-	t_mision* mision;
-}__attribute__((packed)) t_spock;
-
-t_spock* spock_crear();
-void spock_destroy(t_spock* spock);
-
-t_stream* spock_serialize(t_spock* spock);
-t_spock* spock_deserialize(char* stream, int* size);
+/*
+ * Por una cuestion de simplicidad del ejercicio
+ * el stream resultante de la serializacion es grabado a un archivo
+ * Si se reemplazaran los write, por send y los read por recv
+ * se puede usar para armar un protocolo de comunicacion simple
+ * en el que podemos enviar estructuras complejas.
+ */
 
 
-void spock_enviar_a_mision(t_spock* spock);
-t_spock* spock_volver_de_mision();
+int main(int argc, char* argv[]) {
+	if (argc != 2) {
+		printf("Argumentos invalidos\n");
+		return EXIT_FAILURE;
+	}
 
-void spock_es_igual(t_spock* spock, t_spock* otro_spock);
-void spock_print(t_spock* spock);
+	char* file_name = argv[1];
 
-#endif /* SPOCK_H_ */
+	t_spock* spock = spock_volver_de_mision(file_name);
+	spock_print(spock);
+	spock_destroy(spock);
+
+	return EXIT_SUCCESS;
+}

@@ -14,28 +14,23 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "Ejercicio4.h"
+#ifndef MISION_H_
+#define MISION_H_
 
-#include <stdlib.h>
-#include <stdio.h>
+#include "Mision.h"
+#include "Stream.h"
 
-/*
- * Por una cuestion de simplicidad del ejercicio
- * el stream resultante de la serializacion es grabado a un archivo
- * Si se reemplazaran los write, por send y los read por recv
- * se puede usar para armar un protocolo de comunicacion simple
- * en el que podemos enviar estructuras complejas.
- */
+#include "stdint.h"
 
+typedef struct {
+	char* info_codificada;
+	uint32_t longitud;
+}__attribute__((packed)) t_mision;
 
-int main(void) {
-	t_spock* spock_enviado = spock_create();
-	spock_enviar_a_mision(spock_enviado);
+t_mision* mision_crear(char* mensaje);
+void mision_destroy(t_mision* mision);
 
-	t_spock* spock_recibido = spock_volver_de_mision();
+t_stream* mision_serialize(t_mision* mision);
+t_mision* mision_deserialize(char* stream, int* size);
 
-	spock_destroy(spock_enviado);
-	spock_destroy(spock_recibido);
-
-	return EXIT_SUCCESS;
-}
+#endif /* MISION_H_ */

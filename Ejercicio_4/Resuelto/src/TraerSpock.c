@@ -14,7 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "Ejercicio4.h"
+#include "spock/Spock.h"
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -26,18 +26,16 @@
  * se puede usar para armar un protocolo de comunicacion simple
  * en el que podemos enviar estructuras complejas.
  */
-int main(void) {
-	t_spock* spock_a_enviar = spock_crear();
-	spock_enviar_a_mision(spock_a_enviar);
+int main(int argc, char* argv[]) {
+	if (argc != 2) {
+		printf("Argumentos invalidos\n");
+		return EXIT_FAILURE;
+	}
 
-	t_spock* spock_recibido = spock_volver_de_mision();
-	spock_es_igual(spock_a_enviar, spock_recibido);
+	char* file_name = argv[1];
+    t_spock *spock = spock_volver_de_mision(file_name);
+    spock_print(spock);
+	spock_destroy(spock);
 
-	spock_print(spock_a_enviar);
-	printf("---------------------------------\n");
-	spock_print(spock_recibido);
-
-	spock_destroy(spock_a_enviar);
-	spock_destroy(spock_recibido);
 	return EXIT_SUCCESS;
 }
