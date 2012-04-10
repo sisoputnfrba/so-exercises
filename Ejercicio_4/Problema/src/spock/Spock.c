@@ -51,14 +51,14 @@ void spock_destroy(t_spock* spock) {
 	}
 }
 
-void spock_enviar_a_mision(t_spock* spock) {
-	FILE* file = fopen("./spock.bin", "w");
+void spock_enviar_a_mision(t_spock* spock, char* file_name) {
+	FILE* file = fopen(file_name, "w");
 	fwrite(spock, sizeof(t_spock), 1, file);
 	fflush(file);
 	fclose(file);
 }
 
-t_spock* spock_volver_de_mision() {
+t_spock* spock_volver_de_mision(char* file_name) {
 	printf("ahhhhhhh!! no podemos recuperar a Spock\n");
 	return NULL;
 }
@@ -81,6 +81,25 @@ void spock_es_igual(t_spock* spock, t_spock* otro_spock) {
 
 		assert(strcmp(villano_enviado->nombre, villano_recibido->nombre) == 0);
 		assert(villano_enviado->edad == villano_recibido->edad);
+	}
+
+}
+
+void spock_print(t_spock* spock) {
+	printf("Nombre: %s\n", spock->nombre);
+	printf("Edad: %d\n", spock->edad);
+	printf("Apodo de la mascota: %s\n", spock->mascota->apodo);
+	printf("Mascota da vueltas?: %s\n", spock->mascota->da_vueltas ? "Si" : "No");
+	printf("Edad de la mascota: %d\n", spock->mascota->edad);
+	printf("Info Codificada: %s\n", spock->mision->info_codificada);
+	printf("Longitud Info Codificada: %d\n", spock->mision->longitud_info);
+
+	int i;
+	printf("Villanos:\n");
+	for (i = 0; i < list_size(spock->villanos); ++i) {
+		t_villano* villano = list_get(spock->villanos, i);
+		printf("Nombre Villano: %s\n", villano->nombre);
+		printf("Edad del villano: %d\n", villano->edad);
 	}
 
 }

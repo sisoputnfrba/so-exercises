@@ -20,7 +20,7 @@
 #include "Mision.h"
 #include "Mascota.h"
 #include "Villano.h"
-#include "Collections/list.h"
+#include "../Collections/list.h"
 
 typedef struct {
 	char* nombre;
@@ -33,8 +33,8 @@ typedef struct {
 t_spock* spock_create();
 void spock_destroy(t_spock* spock);
 
-void spock_enviar_a_mision(t_spock* spock);
-t_spock* spock_volver_de_mision();
+void spock_enviar_a_mision(t_spock* spock, char* file_name);
+t_spock* spock_volver_de_mision(char* file_name);
 
 void spock_es_igual(t_spock* spock, t_spock* otro_spock);
 void spock_print(t_spock* spock);

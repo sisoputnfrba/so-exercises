@@ -24,7 +24,7 @@
 
 static char* mensajeRandom();
 
-t_spock* spock_crear() {
+t_spock* spock_create() {
 	t_spock* spock = malloc(sizeof(t_spock));
 	spock->edad = 40;
 	spock->nombre = strdup("Roberto Spock");
@@ -130,10 +130,10 @@ t_spock* spock_deserialize(char* stream, int* size) {
 	return spock;
 }
 
-void spock_enviar_a_mision(t_spock* spock) {
+void spock_enviar_a_mision(t_spock* spock, char* file_name) {
 	t_stream* stream_spock_write = spock_serialize(spock);
 
-	FILE* file = fopen("./spock.bin", "w");
+	FILE* file = fopen(file_name, "w");
 	fwrite(stream_spock_write->data, stream_spock_write->size, 1, file);
 	fflush(file);
 	fclose(file);
@@ -141,11 +141,11 @@ void spock_enviar_a_mision(t_spock* spock) {
 	stream_destroy(stream_spock_write);
 }
 
-t_spock* spock_volver_de_mision() {
+t_spock* spock_volver_de_mision(char* file_name) {
 	struct stat statSpock;
-	stat("./spock.bin", &statSpock);
+	stat(file_name, &statSpock);
 
-	FILE* file = fopen("./spock.bin", "r");
+	FILE* file = fopen(file_name, "r");
 	t_stream* stream_spock_read = stream_create(statSpock.st_size);
 	fread(stream_spock_read->data, statSpock.st_size, 1, file);
 	fclose(file);
@@ -165,9 +165,9 @@ void spock_es_igual(t_spock* spock, t_spock* otro_spock) {
 
 	assert(spock->mascota->edad == otro_spock->mascota->edad);
 
-	assert(strcmp(spock->mision->informacionCodificada, otro_spock->mision->informacionCodificada) == 0);
+	assert(strcmp(spock->mision->info_codificada, otro_spock->mision->info_codificada) == 0);
 
-	assert(spock->mision->longitudInformacionCodificada == otro_spock->mision->longitudInformacionCodificada);
+	assert(spock->mision->longitud == otro_spock->mision->longitud);
 
 	int i;
 	for (i = 0; i < list_size(spock->villanos); ++i) {
@@ -186,8 +186,8 @@ void spock_print(t_spock* spock) {
 	printf("Apodo de la mascota: %s\n", spock->mascota->apodo);
 	printf("Mascota da vueltas?: %s\n", spock->mascota->da_vueltas ? "Si" : "No");
 	printf("Edad de la mascota: %d\n", spock->mascota->edad);
-	printf("Info Codificada: %s\n", spock->mision->informacionCodificada);
-	printf("Longitud Info Codificada: %d\n", spock->mision->longitudInformacionCodificada);
+	printf("Info Codificada: %s\n", spock->mision->info_codificada);
+	printf("Longitud Info Codificada: %d\n", spock->mision->longitud);
 
 	int i;
 	printf("Villanos:\n");
