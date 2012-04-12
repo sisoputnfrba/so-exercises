@@ -27,8 +27,8 @@ void cliente_destroy(t_cliente* cliente) {
 }
 
 t_cliente* cliente_from_file(FILE* file) {
-	char* nombre = malloc(CLIENTE_NAME_MAX_LENGTH);
-	char* apellido = malloc(CLIENTE_NAME_MAX_LENGTH);
+	char nombre[CLIENTE_NAME_MAX_LENGTH];
+	char apellido[CLIENTE_NAME_MAX_LENGTH];
 	int codigo_cliente = 0;
 	fscanf(file, "%d,%[^,],%s\n", &codigo_cliente, nombre, apellido);
 	return cliente_create(nombre, apellido, codigo_cliente);
