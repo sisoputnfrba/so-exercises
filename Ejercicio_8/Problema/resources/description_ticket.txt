@@ -1,0 +1,13 @@
+## TICKET
+numero[numerico[0..100]],tipo[char[1]],total[Numerico], items[int]
+cliente
+item_1
+.
+.
+item_n
+
+## CLIENTE
+codigo_cliente[Numerico],nombre[String],apellido[String]
+
+## ITEM
+nombre[String],precio[Numerico]

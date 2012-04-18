@@ -1,0 +1,5 @@
+001,1,3000,3
+14,gaston,prieto
+ipod,1400
+kindle,1200
+mochila samsonite,400
