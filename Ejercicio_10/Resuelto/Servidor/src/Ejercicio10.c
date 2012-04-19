@@ -4,7 +4,7 @@
  *  Created on: 11/03/2012
  *      Author: sebastian
  */
-#include "Ejercicio6.h"
+#include "Ejercicio10.h"
 #define MAX_BUFFER_SIZE  200
 
 int port;

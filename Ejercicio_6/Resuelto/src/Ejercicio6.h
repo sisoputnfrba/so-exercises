@@ -14,24 +14,31 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef EJERCICIO5_H_
-#define EJERCICIO5_H_
+#ifndef EJERCICIO6_H_
+#define EJERCICIO6_H_
+
+#define _XOPEN_SOURCE 500
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
-#include <sys/socket.h>
+#include <stdint.h>
 #include <sys/types.h>
-#include <semaphore.h>
-#include <arpa/inet.h>
 #include <unistd.h>
-#include <sys/select.h>
-#include <memory.h>
+#include <semaphore.h>
 #include "Collections/queue.h"
 
-void iniciar_conexion();
-void comunicarse();
-void queue_sync_push(t_queue *, void *element);
-void *queue_sync_pop(t_queue *);
+typedef struct {
+	const char* pc; //PC que hizo el pedido de impresion
+	char* data;
+} t_print_job;
 
-#endif /* EJERCICIO5_H_ */
+void trabajar(void * args);
+void procesar_cola_impresion(void * args);
+void mandar_a_imprimir(t_queue* jobQueue, const char* nombre);
+char* crear_data();
+
+void* queue_sync_pop(t_queue* self);
+void queue_sync_push(t_queue* self, void* element);
+
+#endif /* EJERCICIO6_H_ */

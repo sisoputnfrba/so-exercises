@@ -1,5 +1,3 @@
-# UNDER CONSTRUCTION #
-
 ## Ejercitación Práctica ##
 
 Este es el repositorio donde se alojará el código fuente necesario para llevar a cabo todos los ejercicios propuestos por la cátedra para poder afianzar los conocimientos aprendidos en las charlas técnicas.
@@ -12,9 +10,9 @@ La ejercitación se encontrará disponible en:
 
 Los temas tratados son los siguientes:
 
-* **Concurrencia**: Ejercicio 1, Ejercicio 2, Ejercicio 3
-* **Serialización**: Ejercicio 4
-* **Networking**: Ejercicio 5, Ejercicio 6
-* **Errores comunes**: Ejercicio 7
-* **Memory Leaks**: Ejercicio 8
-* **Buenas Prácticas**: Ejercicio 9
+* **ANSI C, TAD**: Ejercicio 1, Ejercicio 2
+* **Errores comunes**: Ejercicio 3
+* **Memory Leaks**: Ejercicio 4
+* **Concurrencia**: Ejercicio 5, Ejercicio 6, Ejercicio 7
+* **Serialización**: Ejercicio 8
+* **Networking**: Ejercicio 9, Ejercicio 10

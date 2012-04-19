@@ -5,8 +5,8 @@
  *      Author: sebastian
  */
 
-#ifndef EJERCICIO5_H_
-#define EJERCICIO5_H_
+#ifndef EJERCICIO10_H_
+#define EJERCICIO10_H_
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -25,4 +25,4 @@ void iniciar_conexion();
 void queue_sync_push(t_queue *, void *element);
 void *queue_sync_pop(t_queue *);
 
-#endif /* EJERCICIO5_H_ */
+#endif /* EJERCICIO10_H_ */

@@ -14,11 +14,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef EJERCICIO7_H_
-#define EJERCICIO7_H_
+#ifndef EJERCICIO3_H_
+#define EJERCICIO3_H_
 
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 
-#endif /* EJERCICIO7_H_ */
+#endif /* EJERCICIO3_H_ */

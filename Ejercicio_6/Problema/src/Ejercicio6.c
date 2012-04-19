@@ -14,7 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "Ejercicio2.h"
+#include "Ejercicio6.h"
 
 int main() {
 	pthread_t h1, h2, h3, h4;

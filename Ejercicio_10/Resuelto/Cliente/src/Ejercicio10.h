@@ -14,8 +14,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef EJERCICIO5_H_
-#define EJERCICIO5_H_
+#ifndef EJERCICIO10_H_
+#define EJERCICIO10_H_
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -34,4 +34,4 @@ void comunicarse();
 void queue_sync_push(t_queue *, void *element);
 void *queue_sync_pop(t_queue *);
 
-#endif /* EJERCICIO5_H_ */
+#endif /* EJERCICIO10_H_ */
