@@ -6,7 +6,7 @@ Se recomienda hacer dichos ejercicios y una vez resueltos por el alumno, que se 
 
 La ejercitación se encontrará disponible en:
 
-* http://...
+* https://github.com/downloads/sisoputnfrba/exercises/EjerciciosOperativos_1.0.pdf
 
 Los temas tratados son los siguientes:
 
