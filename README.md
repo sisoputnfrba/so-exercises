@@ -6,7 +6,7 @@ Se recomienda hacer dichos ejercicios y una vez resueltos por el alumno, que se 
 
 La ejercitación se encontrará disponible en:
 
-* http://faq.utn.so/ejercicios
+* http://faq.utnso.com/ejercicios
 
 Los temas tratados son los siguientes:
 
