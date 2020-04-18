@@ -14,7 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "Ejercicio3.h"
+#include "Ejercicio4.h"
 #include <math.h> //Solucion al Error 12
  
 int main(void)

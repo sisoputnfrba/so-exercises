@@ -14,7 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "Ejercicio6.h"
+#include "Ejercicio7.h"
 
 #define JOBQUEUESIZE 10
 pthread_mutex_t mutexImpresion; //Para asegurar la mutua exclusion en la cola de trabajo

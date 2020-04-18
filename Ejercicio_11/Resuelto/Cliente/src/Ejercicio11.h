@@ -14,11 +14,24 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef EJERCICIO3_H_
-#define EJERCICIO3_H_
+#ifndef EJERCICIO11_H_
+#define EJERCICIO11_H_
 
-#include <stdlib.h>
 #include <stdio.h>
-#include <string.h>
+#include <stdlib.h>
+#include <pthread.h>
+#include <sys/socket.h>
+#include <sys/types.h>
+#include <semaphore.h>
+#include <arpa/inet.h>
+#include <unistd.h>
+#include <sys/select.h>
+#include <memory.h>
+#include "Collections/queue.h"
 
-#endif /* EJERCICIO3_H_ */
+void iniciar_conexion();
+void comunicarse();
+void queue_sync_push(t_queue *, void *element);
+void *queue_sync_pop(t_queue *);
+
+#endif /* EJERCICIO11_H_ */

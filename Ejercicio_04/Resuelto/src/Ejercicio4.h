@@ -13,25 +13,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+ 
+#ifndef EJERCICIO4_H_
+#define EJERCICIO4_H_
 
-#ifndef EJERCICIO6_H_
-#define EJERCICIO6_H_
-
-#include <stdio.h>
 #include <stdlib.h>
-#include <pthread.h>
-#include <unistd.h>
-#include <semaphore.h>
-#include "Collections/queue.h"
+#include <stdio.h>
+#include <string.h>
 
-void  trabajar(void* args);
-void  procesar_cola_impresion(void* args);
-void  mandar_a_imprimir(t_queue* jobQueue);
-char* crear_data();
-
-typedef struct {
-	int pc; //PC que hizo el pedido de impresion
-	char* data; //Datos a imprimir
-} t_print_job;
-
-#endif /* EJERCICIO6_H_ */
+#endif /* EJERCICIO4_H_ */
